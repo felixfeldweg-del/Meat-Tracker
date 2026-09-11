@@ -1,16 +1,13 @@
-# meattrack
+# Meat-Tracker
 
-A new Flutter project.
+An App to track your meat consume 
 
-## Getting Started
+## Features 
+ - Saving to db 
+ - List view of all entries 
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Planed Features
+ - Delete and edit options
+ - Visualization of the data
+ - sorting and summing up days/weaks/...
+ - bette UI 
