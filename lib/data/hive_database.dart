@@ -19,7 +19,7 @@ class HiveDatabase{
   //read
   List<MeatItem> readData(){
   
-  List<List<dynamic>> meatListFormatted = _myBox.get('MEAT_LIST') ?? [];
+  List<dynamic> meatListFormatted = _myBox.get('MEAT_LIST') ?? [];
   
   List<MeatItem> meatList = [];
   for(var meat in meatListFormatted){

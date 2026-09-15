@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:meattrack/data/meat_data.dart';
 import 'package:meattrack/models/meat_item.dart';
+import 'package:meattrack/widgets/meat_summary.dart';
+import 'package:meattrack/widgets/meat_tile.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,6 +29,7 @@ class _HomePageState extends State<HomePage> {
     showDialog(context: context, builder: (context) => AlertDialog(
       title: const Text('Add new meal'),
       content: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
             controller: _nameController, 
@@ -49,7 +52,7 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           MaterialButton(
-            onPressed: _saveMeat, 
+            onPressed:  _saveMeat, 
             child: const Text('Save'),
           ),
           MaterialButton(
@@ -61,6 +64,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _saveMeat(){
+    if(_amountController.text.isEmpty || _nameController.text.isEmpty){
+      return;
+    }
+
     MeatItem newItem = MeatItem(
       amount:  int.parse(_amountController.text),
       name: _nameController.text,
@@ -89,13 +96,24 @@ class _HomePageState extends State<HomePage> {
           ),
           backgroundColor: Color(0xffff8080),
         ),
-        body: ListView.builder(
-          itemCount: value.getMeatList().length,
-          itemBuilder: (context, index) => ListTile(
-            title: Text(value.getMeatList()[index].name),
-            subtitle: Text(value.getMeatList()[index].amount.toString() + " g"),
-          ) 
-                  ),
+        body: ListView(
+          children: [
+            MeatSummary(
+              startOfWeek: value.getStartOfWeek()
+            ),
+
+            ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: value.getMeatList().length,
+              itemBuilder: (context, index) => MeatTile(
+                name: value.getMeatList()[index].name,
+                amount: value.getMeatList()[index].amount, 
+                dateTime: value.getMeatList()[index].dateTime
+              )
+            ),
+          ]
+        ),
       ),
     );
   }

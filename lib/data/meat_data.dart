@@ -31,5 +31,11 @@ class MeatData extends ChangeNotifier{
 
   //get weekday
 
+  //start of week 
+  DateTime getStartOfWeek(){
+    DateTime now = DateTime.now();
+    DateTime startOfWeek = DateTime(now.year, now.month, now.day - now.weekday);
+    return startOfWeek;
+  }
 
 }
