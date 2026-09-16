@@ -19,9 +19,7 @@ class BarData {
     required this.thuAmount,
     required this.friAmount,
     required this.satAmount,
-  });
-
-  void initBarData(){
+  }){
     barData.add(SingleBar(x: 0, y: sunAmount));
     barData.add(SingleBar(x: 1, y: monAmount));
     barData.add(SingleBar(x: 2, y: tueAmount));

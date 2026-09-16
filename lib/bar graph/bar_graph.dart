@@ -42,8 +42,57 @@ class MyBarGraph extends StatelessWidget {
       BarChartData(
         maxY: maxY,
         minY: 0,
+        gridData: FlGridData(show: false),
+        borderData: FlBorderData(show: false),
+        titlesData: FlTitlesData(
+          leftTitles: const AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          rightTitles: const AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          topTitles: const AxisTitles(
+            sideTitles: SideTitles(showTitles: false),
+          ),
+          bottomTitles: AxisTitles(
+            sideTitles: SideTitles(
+              showTitles: true,
+              getTitlesWidget: (double value, TitleMeta meta) {
+                 const List<String> days = [
+                  'Sun',
+                  'Mon',
+                  'Tue',
+                  'Wed',
+                  'Thu',
+                  'Fri',
+                  'Sat',
+                ];
+                final index = value.toInt();
+
+                if (index < 0 || index >= days.length) {
+                  return const SizedBox.shrink();
+                }
+                
+                return Text(days[index]);
+              },
+            )
+          ),
+        ),
+        
         barGroups: myBarData.barData
-          .map((data) => BarChartGroupData(x: data.x, ))
+          .map((data) => 
+            BarChartGroupData(
+              x: data.x, 
+
+              barRods: [
+                BarChartRodData(
+                  toY: data.y, 
+                  width: 30,
+                  borderRadius: BorderRadius.circular(5),
+                  color: Colors.red),
+              ]
+            )
+          )
           .toList()
       )
     );
