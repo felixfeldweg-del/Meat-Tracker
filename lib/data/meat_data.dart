@@ -16,6 +16,7 @@ class MeatData extends ChangeNotifier{
   void prepareData(){
     if (db.readData().isNotEmpty){
       meatList = db.readData();
+      print(meatList);
     }
   }
 
@@ -37,5 +38,16 @@ class MeatData extends ChangeNotifier{
     DateTime startOfWeek = DateTime(now.year, now.month, now.day - now.weekday);
     return startOfWeek;
   }
+
+ double meatAmountByDay(DateTime day){
+   double amount = 0;
+   for(var meat in meatList){
+     if(meat.dateTime.day == day.day){
+       amount += meat.amount;
+     }
+   }
+   return amount;
+ }
+
 
 }

@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
     Provider.of<MeatData>(context, listen: false).prepareData();
   }
 
-  void _AddDialog(){
+  void _addDialog(){
     
     showDialog(context: context, builder: (context) => AlertDialog(
       title: const Text('Add new meal'),
@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
       builder: (context, value, child) => Scaffold(
         backgroundColor: Color(0xffffbfbf),
         floatingActionButton: FloatingActionButton(
-          onPressed: _AddDialog,
+          onPressed: _addDialog,
           child: const Icon(
             Icons.add, 
             color: Color(0xff950000),

@@ -10,8 +10,8 @@ class HiveDatabase{
     //convert to list of items 
     List<List<dynamic>> meatListFormatted = [];
     for(var meat in meatList){
-      List<dynamic> meatListFormatted = [meat.name, meat.amount, meat.dateTime];
-      meatListFormatted.add(meat.dateTime);
+      List<dynamic> meatFormatted = [meat.name, meat.amount, meat.dateTime];
+      meatListFormatted.add(meatFormatted);
     }
     _myBox.put('MEAT_LIST', meatListFormatted);
   }
